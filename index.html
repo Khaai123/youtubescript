@@ -189,15 +189,12 @@ const blob = new Blob([txtContent], { type: 'text/plain' });
       }
     }
 
-    if (!rawScriptEN || !rawScriptVI) {
-      rawScriptEN = `0:08\n(audience clapping)\n0:09\n- I would like now to introduce Jason King\n0:13\nChair and Associate Professor\n0:15\nof the Clive Davis Institute of Recorded Music,\n0:20\nTisch School of the Arts`;
-      rawScriptVI = `0:09\nI would like now to introduce Jason King\n→ Tôi xin được giới thiệu Jason King\n\n0:13\nChair and Associate Professor\n→ Chủ nhiệm và Phó giáo sư`;
-    }
+    
 
     let player;
     window.onYouTubeIframeAPIReady = function () {
       player = new YT.Player('player', {
-        height: '360', width: '640', videoId: (customVideoId || 'OBG50aoUwlI').split('_')[0],
+        height: '360', width: '640', videoId: customVideoId ? customVideoId.split('_')[0] : '',
       });
       const pauseBtn = document.getElementById('togglePause');
       if (pauseBtn) {
@@ -329,6 +326,11 @@ function startSpeechCheck(expectedText, element) {
   function execCmd(cmd, value = null) {
     document.execCommand(cmd, false, value);
   }
+
+
+if (!customVideoId) {
+  document.getElementById('player').style.display = 'none';
+}
 
 // === IndexedDB Setup ===
 let db;
