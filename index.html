@@ -328,7 +328,7 @@ function startSpeechCheck(expectedText, element) {
   }
 
 
-if (!customVideoId) {
+if (!customVideoId || !customVideoId.split('_')[0]) {
   document.getElementById('player').style.display = 'none';
 }
 
